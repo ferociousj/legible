@@ -157,8 +157,61 @@
   .signal-card {
     background: var(--card-bg);
     border: 1px solid var(--rule);
-    padding: 1.8rem;
     position: relative;
+    perspective: 600px;
+    min-height: 140px;
+    cursor: pointer;
+  }
+
+  .signal-card .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+  }
+
+  .signal-card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .signal-card .card-front,
+  .signal-card .card-back {
+    padding: 1.8rem;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .signal-card .card-front {
+    position: relative;
+  }
+
+  .signal-card .card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .signal-card .card-back p {
+    color: var(--bg);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .signal-card .card-back .back-label {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    display: block;
   }
 
   .signal-card::before {
@@ -171,6 +224,7 @@
     background: var(--accent);
     opacity: 0;
     transition: opacity 0.3s;
+    z-index: 1;
   }
 
   .signal-card:hover::before { opacity: 1; }
@@ -418,8 +472,8 @@
 <section class="problem">
   <span class="section-label">The Problem</span>
   <h2>You're accelerating without a map.</h2>
-  <p>Claude and its peers have given your engineers 3–5x the code production. But the organizational knowledge that makes code coherent hasn't kept pace. Your senior engineer who held the whole system in their head is now managing five AI agents, and none of them know what he knows.</p>
-  <p>The result: code review bottlenecks, features nobody validated, architectural drift, and a growing gap between what your platform team knows and what your product team knows. Meanwhile, your agents are burning through tokens searching for context that should have been at their fingertips. You're running fast, but you might be running off a cliff.</p>
+  <p>AI coding tools have given your engineers 3–5x the output. But your organization can't keep up with what they're building, and nobody's sure what to build next or how to prioritize it. Your senior engineer who held the whole system in their head is now managing five AI agents, and none of them know what he knows.</p>
+  <p>Your old processes aren't working for this new era. Code review is bottlenecking. Features ship without validation. Your platform team and your product team are operating from completely different mental models, and neither one is written down. Meanwhile, your agents are burning through tokens searching for context that should have been at their fingertips. All of this is costing you real money, time, and energy.</p>
 </section>
 
 <div class="divider"></div>
@@ -428,23 +482,65 @@
 <section class="signals">
   <span class="section-label">You might need this if</span>
   <div class="signals-grid">
-    <div class="signal-card">
-      <p>Pull requests are piling up because only two or three people feel confident reviewing code outside their own module.</p>
+    <div class="signal-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <p>Pull requests are piling up because only two or three people feel confident reviewing code outside their own module.</p>
+        </div>
+        <div class="card-back">
+          <div><span class="back-label">What if...</span><p>any engineer could load the context they need to review any part of the system — in minutes, not hours?</p></div>
+        </div>
+      </div>
     </div>
-    <div class="signal-card">
-      <p>Your engineers can't explain what the whole product does — just their corner of it.</p>
+    <div class="signal-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <p>Your engineers can't explain what the whole product does — just their corner of it.</p>
+        </div>
+        <div class="card-back">
+          <div><span class="back-label">What if...</span><p>there was a single map of your product that every engineer, PM, and AI agent could navigate?</p></div>
+        </div>
+      </div>
     </div>
-    <div class="signal-card">
-      <p>Claude keeps grepping your entire codebase instead of knowing where to look — and your token bill is the proof.</p>
+    <div class="signal-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <p>Claude keeps grepping your entire codebase instead of knowing where to look — and your token bill is the proof.</p>
+        </div>
+        <div class="card-back">
+          <div><span class="back-label">What if...</span><p>your agents could orient themselves in seconds because the knowledge architecture told them exactly where to go?</p></div>
+        </div>
+      </div>
     </div>
-    <div class="signal-card">
-      <p>You're shipping features faster than your team can support, document, or educate users about them.</p>
+    <div class="signal-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <p>You're shipping features faster than your team can support, document, or educate users about them.</p>
+        </div>
+        <div class="card-back">
+          <div><span class="back-label">What if...</span><p>your documentation kept pace with development because the scaffolding was already in place?</p></div>
+        </div>
+      </div>
     </div>
-    <div class="signal-card">
-      <p>Your platform team and product team have completely different mental models of how the system works, and neither model is written down.</p>
+    <div class="signal-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <p>Your platform team and product team have completely different mental models of how the system works, and neither model is written down.</p>
+        </div>
+        <div class="card-back">
+          <div><span class="back-label">What if...</span><p>both teams were working from the same shared model — one that was legible to humans and machines alike?</p></div>
+        </div>
+      </div>
     </div>
-    <div class="signal-card">
-      <p>You're worried that automating code review is the only way to keep up — and that it will eventually destroy your product.</p>
+    <div class="signal-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <p>You're worried that automating code review is the only way to keep up — and that it will eventually destroy your product.</p>
+        </div>
+        <div class="card-back">
+          <div><span class="back-label">What if...</span><p>you could layer deterministic checks with human judgment — so the machines handle the routine and your people handle the hard calls?</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -461,13 +557,15 @@
 <!-- WHAT YOU GET -->
 <section class="offering">
   <span class="section-label">The Engagement</span>
-  <h2>Six weeks. One module deep. A framework you can repeat.</h2>
+  <h2>Six weeks. One problem deep. A framework you can repeat.</h2>
+
+  <p class="phase-intro" style="color: var(--muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.75;">What you need is a translation layer: between your layers of people, and between your people and their machines. Let's build a scaffold that lets you build and maintain knowledge in a way that's easily traversable by both humans and AI. Think of it as the map that helps everyone — person or agent — know what they're talking about when they're talking about something, so they can work better, faster, and more efficiently together.</p>
 
   <div class="phase">
-    <div class="phase-label">Weeks 1–2</div>
+    <div class="phase-label">Week 1</div>
     <div class="phase-content">
       <h3>Discovery</h3>
-      <p>I interview 5–8 people across engineering, product, and platform. I'm mapping the gap between what your platform team knows (the infrastructure) and what your product team knows (the users and the story). I identify where code review piles up, where Claude goes off the rails, and where institutional knowledge lives in one person's head.</p>
+      <p>I interview 5–8 people across engineering, product, and platform — and I sit with them while they work. I'm mapping the gap between what your platform team knows (the infrastructure) and what your product team knows (the users and the story). I identify where processes are breaking, where Claude goes off the rails, and where institutional knowledge lives in one person's head.</p>
     </div>
   </div>
 
@@ -480,18 +578,10 @@
   </div>
 
   <div class="phase">
-    <div class="phase-label">Weeks 3–5</div>
+    <div class="phase-label">Weeks 3–6</div>
     <div class="phase-content">
-      <h3>Build a Slice</h3>
-      <p>I pick the area where the pain is worst and build the full documentation stack for that one part of your system. Written so a reviewer can load context in minutes, and so a Claude agent working in that area has what it needs without reading everything. This is the proof of concept.</p>
-    </div>
-  </div>
-
-  <div class="phase">
-    <div class="phase-label">Weeks 5–6</div>
-    <div class="phase-content">
-      <h3>Handoff &amp; Framework</h3>
-      <p>I document the method — not just the deliverable, but how to extend it across the rest of your system. You get a repeatable framework your team can use going forward. I come back in six months to check what's changed.</p>
+      <h3>Prototype</h3>
+      <p>I pick the area where the pain is worst and build a working prototype: revised human processes and AI-accessible documentation for that part of your system. This might include new review workflows, agent-readable context files, or a restructured knowledge base — whatever the discovery phase says you need. You get the prototype, the method behind it, and a repeatable framework your team can extend across the rest of the system. I come back in six months to check what's changed.</p>
     </div>
   </div>
 </section>
@@ -501,36 +591,38 @@
 <!-- WHY ME -->
 <section class="why-me">
   <span class="section-label">Why Me</span>
-  <h2>I see the forest. Then I write it down.</h2>
-  <p>I'm a writer who's spent a career translating between technical and non-technical worlds — making the implicit explicit, turning institutional knowledge into documents that people actually read. Engineers see trees. I see the shape of the whole system and can name its layers, its rules, and its gaps.</p>
-  <p>Claude writes perfectly serviceable prose. What it can't do is perceive the architecture of your organization's knowledge, decide what level of abstraction is right, or produce documentation that a human at 3am and an AI agent with a limited context window can both navigate. That's what I do. And when your agents can find what they need without reading everything, your token bill drops too.</p>
+  <h2>You need a writer because your company is still made of people.</h2>
+  <p>I'm a writer who's spent a career translating between technical and non-technical worlds — taking what people know and turning it into words that other people can understand and act on. Your engineers know how the system works. Your product people know what the users need. But that knowledge lives in their heads, and nobody's written it down in a way that bridges the gap for the machines that are doing the work now, and you're starting to see the problems that creates.</p>
+  <p>That's what I do: I talk to people, I see how the systems they make interact, and I make the whole picture legible — to the next engineer, to the on-call human at 3am, and to the AI agent that needs to orient itself without reading everything.</p>
+  <p>Here's the thing nobody wants to hear: Claude will never have a context window big enough to hold your entire product. <i>That's what your people are for.</i> People are the context; the machines do the work. You need someone who makes sure everyone — human and agent — knows where they are and where they're going next. And when your agents can find what they need without grepping your whole codebase, your token bill drops too.</p>
 </section>
 
 <div class="divider"></div>
 
-<!-- DOC REVIEW -->
+<!-- FIRST STEP -->
 <section class="doc-review">
-  <span class="section-label">Also Available</span>
-  <h2>You generated the docs. Let me make them work.</h2>
-  <p>AI tools are great at producing documentation. They're less great at knowing whether that documentation answers the right questions for the right audience. You've probably generated more docs in the last six months than in the two years before — but has anyone actually reviewed them?</p>
-  <p>I'll audit your existing doc set and tell you what's missing, what's aimed at the wrong reader, and what's doing more harm than good. I'll restructure, rewrite, and prune until what's left is useful — for your engineers, your users, or your AI agents, depending on who needs it. And if you want your AI to generate better docs going forward, I'll build the templates and rubrics that make that possible.</p>
+  <span class="section-label">Your First Next Step</span>
+  <h2>Not ready for six weeks? Let's start with a conversation.</h2>
+  <p>Maybe you don't need the full engagement yet. Maybe you just need someone to talk to two or three of your people, find the thing that's actually broken, and propose a fix you can try next week.</p>
+<p>Let's give that a shot.</p>
+  <p>I'll interview a small handful of people across your engineering and product teams, identify the core issue that's costing you the most pain right now, and deliver a concrete process recommendation — maybe even sketch out what the solution looks like. It's lightweight, it's fast, and it'll tell both of us whether the bigger engagement makes sense.</p>
 
   <div class="detail-row">
     <div class="detail-label">Scope</div>
-    <div class="detail-text">A focused review of one documentation area — internal engineering docs, user-facing help content, or AI agent context files. I deliver a prioritized audit with rewrites, not just a list of problems.</div>
+    <div class="detail-text">Two or three interviews. One core issue identified. A proposed process fix with enough detail to act on — not just a list of problems.</div>
   </div>
 
   <div class="detail-row">
     <div class="detail-label">Timeline</div>
-    <div class="detail-text">Two weeks. Tight enough to be useful, long enough to be thorough.</div>
+    <div class="detail-text">One to two weeks.</div>
   </div>
 
   <div class="detail-row">
     <div class="detail-label">Best for</div>
-    <div class="detail-text">Teams that have the docs but not the confidence that they're right — and want a lower-commitment way to see how we work together before a larger engagement.</div>
+    <div class="detail-text">Teams that know something's off but can't quite name it — and want a low-commitment way to see how we work together.</div>
   </div>
 
-  <p class="aside">Think of it as a first date. You'll learn how I think, I'll learn how your team works, and we'll both know whether the bigger engagement makes sense.</p>
+  <p class="aside">Think of it as a first date. You'll learn how I think, I'll learn how your team works, and we'll both know what comes next.</p>
 </section>
 
 <div class="divider"></div>
