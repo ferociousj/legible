@@ -142,99 +142,6 @@
     line-height: 1.75;
   }
 
-  /* --- SIGNALS --- */
-  .signals {
-    padding: 4rem 2rem;
-  }
-
-  .signals-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .signal-card {
-    background: var(--card-bg);
-    border: 1px solid var(--rule);
-    position: relative;
-    perspective: 600px;
-    min-height: 140px;
-    cursor: pointer;
-  }
-
-  .signal-card .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s;
-    transform-style: preserve-3d;
-  }
-
-  .signal-card.flipped .card-inner {
-    transform: rotateY(180deg);
-  }
-
-  .signal-card .card-front,
-  .signal-card .card-back {
-    padding: 1.8rem;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-
-  .signal-card .card-front {
-    position: relative;
-  }
-
-  .signal-card .card-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: rotateY(180deg);
-    display: flex;
-    align-items: center;
-    background: var(--fg);
-    color: var(--bg);
-  }
-
-  .signal-card .card-back p {
-    color: var(--bg);
-    font-size: 0.95rem;
-    line-height: 1.65;
-  }
-
-  .signal-card .card-back .back-label {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--accent);
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  .signal-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1;
-  }
-
-  .signal-card:hover::before { opacity: 1; }
-
-  .signal-card p {
-    font-size: 0.95rem;
-    color: var(--fg);
-    line-height: 1.65;
-  }
-
   /* --- WHAT YOU GET --- */
   .offering h2 {
     font-family: var(--serif);
@@ -463,9 +370,7 @@
 <!-- HERO -->
 <div class="hero">
   <h1>Everyone's building faster. <em>Can your organization keep up?</em></h1>
-  <p class="hero-sub">AI has multiplied your team's output. Even non-engineers are rolling up their sleeves. Now unreviewed code is piling up alongside mountains of unread docs, processes are mutating faster than anyone can keep up, and is the product actually getting any better any quicker?</p>
-<p class="hero-sub">
-I build the knowledge architecture that makes that all work: the documents and processes that let people and machines actually collaborate instead of just coexist.</p>
+  <p class="hero-sub">I build the knowledge architecture that lets your people and their AI tools actually collaborate instead of just coexist — the translation layer between your teams, and between your teams and their machine assistants.</p>
 </div>
 
 <div class="divider"></div>
@@ -474,84 +379,15 @@ I build the knowledge architecture that makes that all work: the documents and p
 <section class="problem">
   <span class="section-label">The Problem</span>
   <h2>You're accelerating without a map.</h2>
-  <p>AI coding tools have given your engineers 3–5x the output. They're so easy to use that designers and PMs are starting to mess around with the codebase. But your organization can't keep up with what everyone's building, and nobody's sure what to build next or how to prioritize it. That senior engineer or software architect who held the whole system in his head is now managing who-knows-how-many AI agents, and none of them know what he knows.</p>
-  <p>Your old processes aren't working for this new era. Code review is bottlenecking. Features ship without validation. Nobody wrote down the rules of the world you're building, and it's starting to show: all those agents everyone's deploying are burning through tokens searching for context that should have been at their fingertips. All of this is costing you real money, time, and energy.</p>
-</section>
-
-<div class="divider"></div>
-
-<!-- SIGNALS -->
-<section class="signals">
-  <span class="section-label">You might need this if</span>
-  <div class="signals-grid">
-    <div class="signal-card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">
-          <p>Pull requests are piling up because only two or three people feel confident reviewing code outside their own module.</p>
-        </div>
-        <div class="card-back">
-          <div><span class="back-label">What if...</span><p>any engineer could load the context they need to review any part of the system — in minutes, not hours?</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="signal-card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">
-          <p>Your engineers can't explain what the whole product does — just their corner of it.</p>
-        </div>
-        <div class="card-back">
-          <div><span class="back-label">What if...</span><p>there was a single map of your product that every engineer, PM, and AI agent could navigate?</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="signal-card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">
-          <p>Claude keeps grepping your entire codebase instead of knowing where to look — and your token bill is the proof.</p>
-        </div>
-        <div class="card-back">
-          <div><span class="back-label">What if...</span><p>your agents could orient themselves in seconds because the knowledge architecture told them exactly where to go?</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="signal-card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">
-          <p>You're shipping features faster than your team can support, document, or educate users about them.</p>
-        </div>
-        <div class="card-back">
-          <div><span class="back-label">What if...</span><p>your documentation kept pace with development because the scaffolding was already in place?</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="signal-card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">
-          <p>Your platform team and product team have completely different mental models of how the system works, and neither model is written down.</p>
-        </div>
-        <div class="card-back">
-          <div><span class="back-label">What if...</span><p>both teams were working from the same shared model — one that was legible to humans and machines alike?</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="signal-card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">
-          <p>You're worried that automating code review is the only way to keep up — and that it will eventually destroy your product.</p>
-        </div>
-        <div class="card-back">
-          <div><span class="back-label">What if...</span><p>you could layer deterministic checks with human judgment — so the machines handle the routine and your people handle the hard calls?</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <p>AI coding tools have given your engineers 3–5x the output. They're so easy to use that designers and PMs are starting to mess around with the codebase. But the organizational knowledge that makes all that output coherent hasn't kept pace: code review is bottlenecking, unread docs are piling up everywhere, and uncooked features slip through without validation.</p>
+  <p>That senior engineer who held the whole system in his head is now managing who-knows-how-many AI agents, and none of them know what he knows. Nobody wrote down the rules of the world you're building, and it's starting to show: all those agents everyone's deploying are burning through tokens searching for context that should have been at their fingertips. Those costs are real now, and there's nothing stopping them from going up.</p>
 </section>
 
 <div class="divider"></div>
 
 <!-- PULL QUOTE -->
 <div class="pull-quote">
-  <blockquote>The 10x engineer of the future doesn't write code. They manage agents. But those agents need a map of the world they're building in — and right now, that map doesn't exist.</blockquote>
+  <blockquote>To do the work right and keep your token bills down, those fancy agents of yours need a map of the world they're building in, and you don't have one. Let's fix that today.</blockquote>
 </div>
 
 <div class="divider"></div>
@@ -599,7 +435,8 @@ I build the knowledge architecture that makes that all work: the documents and p
   <p>I'm a writer who's spent a career translating between technical and non-technical realms spanning industries from SaaS compliance to hardware supply chains to virtual worlds.</p>
 <p>My core expertise is taking what people know and turning it into words that other people can understand and act on. Your engineers know how the system works. Your product people know what the users need. But that knowledge lives in their heads, and nobody's written it down in a way that bridges the gap for the machines that are doing the work now, and you're starting to see the problems that creates.</p>
   <p>That's what I do: I talk to people, I see how the systems they make interact, and I make the whole picture legible — to the next engineer, to the on-call human at 3am, and to the AI agent that needs to orient itself without reading everything.</p>
-  <p>Here's the thing nobody wants to hear: Claude will never have a context window big enough to hold your entire product. <i>That's what your people are for.</i> People are the context; the machines do the work. You need someone who makes sure everyone — human and agent — knows where they are and where they're going next. And when your agents can find what they need without grepping your whole codebase, your token bill drops too.</p>
+  <p>Here's the thing nobody wants to hear: Claude will never have a context window big enough to hold your entire product. <i>That's what your people are for.</i> People are the context; the machines do the work. You need someone who makes sure everyone — human and agent — knows where they are and where they're going next. And when your agents can find what they need without grepping the whole codebase, your token bill drops too.</p>
+  <p>Sure, you probably have smart product people who could do this work. But they haven't, because they're already busy shipping the product. You need someone whose only job, for a focused interval, is to sit with the people who are doing the work, see the whole picture, and write it down. When I'm done, your team has the framework and the tools to maintain it. Nobody gets pulled off their workstream. Nothing slips. And everyone — people and machines together — is on the same page.</p>
 </section>
 
 <div class="divider"></div>
