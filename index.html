@@ -478,8 +478,20 @@
 
 <footer>
   <span>Legible Systems — Jon Sung</span>
-  <a href="mailto:jon@example.com">jon@example.com</a>
+  <a href="#" id="email-link" onclick="return false;">loading email…</a>
 </footer>
+
+<script>
+(function() {
+  var u = 'the0nlyg00dguy';
+  var d = 'gmail.com';
+  var el = document.getElementById('email-link');
+  var addr = u + '@' + d;
+  el.href = 'mai' + 'lto:' + addr;
+  el.textContent = 'email me';
+  el.onclick = null;
+})();
+</script>
 
 </body>
 </html>
