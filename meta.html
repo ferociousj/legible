@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legible Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F0E8;
+    --fg: #1A1A1A;
+    --accent: #C4391C;
+    --muted: #6B6358;
+    --rule: #D1C9BA;
+    --card-bg: #FFFDF8;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- NAV --- */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav a.cta-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  nav a.cta-link:hover { color: var(--accent); }
+
+  /* --- HERO --- */
+  .hero {
+    padding: 10rem 2rem 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+    max-width: 16ch;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* --- SECTION COMMON --- */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    display: block;
+  }
+
+  /* --- PROBLEM --- */
+  .problem h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 20ch;
+  }
+
+  .problem p {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+  }
+
+  /* --- WHAT YOU GET --- */
+  .offering h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .phase:last-child { border-bottom: none; }
+
+  .phase-label {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    padding-top: 0.15rem;
+  }
+
+  .phase-content h3 {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .phase-content p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* --- WHY ME --- */
+  .why-me h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-me p {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+  }
+
+  /* --- DOC REVIEW --- */
+  .doc-review h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .doc-review p {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+  }
+
+  .doc-review .detail-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .doc-review .detail-row:last-child { border-bottom: none; }
+
+  .doc-review .detail-label {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    padding-top: 0.15rem;
+  }
+
+  .doc-review .detail-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .doc-review .aside {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    .doc-review .detail-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+
+  /* --- QUOTE BLOCK --- */
+  .pull-quote {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    max-width: 700px;
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* --- CTA --- */
+  .cta-section {
+    text-align: center;
+    padding: 5rem 2rem 6rem;
+  }
+
+  .cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+  }
+
+  a.cta-button {
+    display: inline-block;
+    background: var(--fg);
+    color: var(--bg);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    transition: background 0.25s, transform 0.2s;
+  }
+
+  a.cta-button:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--accent); }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    section, .pull-quote, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .phase {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    footer { flex-direction: column; gap: 0.5rem; }
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1, .hero-sub {
+    animation: fadeUp 0.8s ease-out both;
+  }
+
+  .hero-sub { animation-delay: 0.15s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Legible <span>Systems</span></a>
+  <a href="#contact" class="cta-link">Schedule a call</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Everyone's building faster while token costs rise. <em>Can your team keep this up?</em></h1>
+  <p class="hero-sub">I build the knowledge architecture that lets your people and their AI tools actually collaborate instead of just coexist, so you and your machine assistants can do real work <b>faster, better, and cheaper.</b></p>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <span class="section-label">The Problem</span>
+  <h2>You're accelerating without a map and burning gas while you do it.</h2>
+  <p>AI coding tools have given your engineers 3–5x the output. They're so easy to use that designers and PMs are starting to mess around with the codebase. But <b>the organizational knowledge that makes all that output coherent hasn't kept pace:</b> code review is bottlenecking, unread docs are piling up everywhere, and uncooked features slip through without validation.</p>
+
+  <p>Instead of writing code, <b>you're directing AI agents that blast through tokens at downright worrying rates building the wrong things in broken ways looking for context they can't find,</b> and there's nothing stopping those token costs from going up.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote">
+  <blockquote>Current engineering practices haven't prepared you for this moment. You're not engineers anymore: you're the authors of entire universes.</blockquote>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHY ME -->
+<section class="why-me">
+  <span class="section-label">Why Me</span>
+  <h2>Got an alignment problem? Hire a management consultant. Need a world built? Find a writer.</h2>
+  <p>I'm a writer who's spent a career translating between technical and non-technical realms spanning industries from SaaS compliance to hardware supply chains to virtual worlds. <b>I've also spent my whole life steeped in fictional universes and the rules they operate on.</b></p>
+<p>My core expertise is taking what people know and turning it into <b>words that other people can understand and act on.</b> Your engineers know how the system works. Your product people know what the users need. Together what you're constructing amounts to an entire universe that your AI agents need to navigate, and right now they don't even know they're in one, which is why they waste so many tokens trying to figure it out.</p>
+  <p>Here's the thing nobody wants to hear: <b>Claude will never have a context window big enough to hold your entire product.</b> Your product isn't just your codebase: it's a world you've built that includes you, your users, and the story of whatever they're trying to accomplish. Once we can show your agents the world and get them to understand the story, they'll be able to make changes that stay inside the world and follow its rules from jump. <b>Bottom line: you can work together better and faster without burning through so many tokens.</b></p>
+  <p>Sure, you probably have smart product people who could give this a shot, but they're already busy shipping the product; they don't have time for worldbuilding metaphors and products as stories. That's what I'm here for. I live and breathe stories. I build worlds for <i>fun.</i> <b>I can make your world my job</b> for a focused interval: sit with the people who are doing the work, then build and test the universe model with your agents. <b>When I'm done, your team has the framework they need and the tools to maintain it.</b> Nobody gets pulled off their workstream. Nothing slips. And everyone — people and machines together — is on the same page.</p>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- WHAT YOU GET -->
+<section class="offering">
+  <span class="section-label">The Engagement</span>
+  <h2>Scout the terrain, find the gaps, build the framework.</h2>
+
+  <p class="phase-intro" style="color: var(--muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.75;">What you need is a <b>translation layer</b> between your different groups of people and their machine assistants. Let's create <b>a scaffold that lets you build and maintain knowledge in a way that's easily traversable by both humans and AI.</b> Think of it as the map that helps everyone — person or agent — know what they're talking about when they're talking about something, so they can work better, faster, and more efficiently together. Let's say six weeks:</p>
+
+  <div class="phase">
+    <div class="phase-label">Week 1</div>
+    <div class="phase-content">
+      <h3>Discovery</h3>
+      <p>I interview 5–8 people across engineering, product, and platform — and I sit with them while they work. I'm mapping the gap between what your platform team knows (the infrastructure) and what your product team knows (the users and the story). I identify where processes are breaking, where Claude goes off the rails, and where institutional knowledge lives in one person's head.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">Weeks 2–3</div>
+    <div class="phase-content">
+      <h3>Audit &amp; Architecture</h3>
+      <p>I deliver a gap analysis: what knowledge exists, where it lives, what's missing. Then I draft the architecture for your documentation — product context, system rules, traversal maps, coding conventions — structured so both humans and AI agents can use it effectively.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">Weeks 3–6</div>
+    <div class="phase-content">
+      <h3>Prototype</h3>
+      <p>I pick the area where the pain is worst and build a working prototype: revised human processes and AI-accessible documentation for that part of your system. This might include new review workflows, agent-readable context files, a restructured knowledge base, or templates that help your AI generate better documentation going forward — whatever the discovery phase says you need most. You get the prototype, the method behind it, and a repeatable framework your team can extend across the rest of the system. I come back in six months to check what's changed.</p>
+    </div>
+  </div>
+
+  <p class="phase-intro" style="color: var(--muted); max-width: 600px; margin-top: 2rem; line-height: 1.75;">Our goal is to help your assistants load context faster, get those agents to orient themselves without reading everything every time, and overhaul your review process so that everyone can work together more coherently. <b>Bottom line: less time wasted, lower token costs, and features your users actually want that ship reliably.</b> The math isn't complicated — even a modest improvement in any one of these pays for the engagement several times over.</p>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- FIRST STEP -->
+<section class="doc-review">
+  <span class="section-label">Your First Next Step</span>
+  <h2>Not ready for six weeks? Let's start with a conversation.</h2>
+  <p>Maybe you don't need the full engagement yet. Maybe you just need someone to talk to two or three of your people, find something real that's actually broken, and propose a fix you can try next week.</p>
+<p>Let's give that a shot.</p>
+  <p>I'll interview a small handful of people across your engineering and product teams, identify the core issue that's costing you the most pain right now, and deliver a concrete process recommendation — maybe even sketch out what the solution looks like, even if it's just a document audit. It's lightweight, it's fast, and it'll tell both of us whether the bigger engagement makes sense.</p>
+
+  <div class="detail-row">
+    <div class="detail-label">Scope</div>
+    <div class="detail-text">Two or three interviews. One core issue identified. A proposed process fix with enough detail to act on, not just a list of problems.</div>
+  </div>
+
+  <div class="detail-row">
+    <div class="detail-label">Timeline</div>
+    <div class="detail-text">One to two weeks.</div>
+  </div>
+
+  <div class="detail-row">
+    <div class="detail-label">Best for</div>
+    <div class="detail-text">Teams that know something's off but can't quite name it, and want a low-commitment way to see how we work together.</div>
+  </div>
+
+  <p class="aside">Think of it as a first date. You'll learn how I think, I'll learn how your team works, and we'll both know what comes next.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Let's have coffee.</h2>
+  <p>No pitch. Just a conversation about what's working and what isn't.</p>
+  <a href="https://calendly.com/the0nlyg00dguy/30min" class="cta-button">Schedule 30 minutes</a>
+</section>
+
+<footer>
+  <span>Legible Systems — Jon Sung</span>
+  <a href="#" id="email-link" onclick="return false;">loading email…</a>
+</footer>
+
+<script>
+(function() {
+  var u = 'the0nlyg00dguy';
+  var d = 'gmail.com';
+  var el = document.getElementById('email-link');
+  var addr = u + '@' + d;
+  el.href = 'mai' + 'lto:' + addr;
+  el.textContent = 'email me';
+  el.onclick = null;
+})();
+</script>
+
+</body>
+</html>
