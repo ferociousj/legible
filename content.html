@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legible Systems — AI Content, Done Right</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F0E8;
+    --fg: #1A1A1A;
+    --accent: #C4391C;
+    --muted: #6B6358;
+    --rule: #D1C9BA;
+    --card-bg: #FFFDF8;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- NAV --- */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav a.cta-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  nav a.cta-link:hover { color: var(--accent); }
+
+  /* --- HERO --- */
+  .hero {
+    padding: 10rem 2rem 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+    max-width: 18ch;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* --- SECTION COMMON --- */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    display: block;
+  }
+
+  /* --- PROBLEM --- */
+  .problem h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    max-width: 20ch;
+  }
+
+  .problem p {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+  }
+
+  .problem p b { color: var(--fg); font-weight: 600; }
+
+  /* --- WHY ME --- */
+  .why-me h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-me p {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+  }
+
+  .why-me p b { color: var(--fg); font-weight: 600; }
+
+  /* --- HOW IT WORKS --- */
+  .offering h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .phase:last-child { border-bottom: none; }
+
+  .phase-label {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    padding-top: 0.15rem;
+  }
+
+  .phase-content h3 {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .phase-content p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .phase-intro b { color: var(--fg); font-weight: 600; }
+
+  /* --- WHY NOW --- */
+  .why-now h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-now p {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+  }
+
+  .why-now p b { color: var(--fg); font-weight: 600; }
+
+  /* --- FIRST STEP (detail rows) --- */
+  .first-step h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .first-step p {
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
+  }
+
+  .first-step .detail-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .first-step .detail-row:last-child { border-bottom: none; }
+
+  .first-step .detail-label {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    padding-top: 0.15rem;
+  }
+
+  .first-step .detail-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .first-step .aside {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    .first-step .detail-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+
+  /* --- QUOTE BLOCK --- */
+  .pull-quote {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    max-width: 700px;
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* --- CTA --- */
+  .cta-section {
+    text-align: center;
+    padding: 5rem 2rem 6rem;
+  }
+
+  .cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+  }
+
+  a.cta-button {
+    display: inline-block;
+    background: var(--fg);
+    color: var(--bg);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    transition: background 0.25s, transform 0.2s;
+  }
+
+  a.cta-button:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* --- FOOTER --- */
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--accent); }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    section, .pull-quote, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .phase {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    footer { flex-direction: column; gap: 0.5rem; }
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1, .hero-sub {
+    animation: fadeUp 0.8s ease-out both;
+  }
+
+  .hero-sub { animation-delay: 0.15s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Legible <span>Systems</span></a>
+  <a href="#contact" class="cta-link">Schedule a call</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>You've got a content calendar to fill. <em>But who's going to do the writing?</em></h1>
+  <p class="hero-sub">AI still doesn't work as well as we want it to. I can direct and polish its output, so you get content you're proud to publish for less than an agency costs.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <span class="section-label">The Problem</span>
+  <h2>Doing nothing falls behind. Doing it badly is worse.</h2>
+  <p><b>AI is great at producing drafts and terrible at producing finished work.</b> It turns out you still need a writer who can tell the machine what to do and fix the things it creates.</p>
+  <p>The trouble is you don't have that person in-house, or the one you've got is already buried. And hiring a whole agency costs more than the work is worth to you. So you're stuck between two bad options: <b>publish nothing and watch competitors pull ahead, or publish AI slop that makes you look worse than saying nothing at all.</b></p>
+  <p>Meanwhile your leadership wants the marketing team to show results by working faster with AI, but <b>demand has outpaced what anyone can actually deliver,</b> and quality suffers for it. What's worse, readers can tell. It's getting easier to tell every month.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote">
+  <blockquote>The hard part was never generating the words. It was deciding which ones are any good.</blockquote>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHY ME -->
+<section class="why-me">
+  <span class="section-label">Why Me</span>
+  <h2>I own the part the AI can't do.</h2>
+  <p>I'm a writer. I've spent a career refining raw material (interviews, notes, half-formed ideas) into drafts people actually want to read. AI just made the drafts faster to produce. <b>The editing, the judgment, the taste: that part still needs a human, and it turns out that part's the whole job.</b></p>
+  <p>Hire me to run your AI content pipeline end-to-end. I direct the AI to draft whatever you need (blog posts, landing pages, newsletters, whatever's on the list) and then <b>I edit until it sounds like <i>you</i> and not like every other company using the same tools.</b> You get volume <i>and</i> quality, which used to be a tradeoff and isn't anymore these days, as long as the right person is doing the editing. That's the good news.</p>
+  <p>The <i>even better news</i> is that I can do it for less. You're paying for <b>one writer who's fast because the AI handles the first draft</b> instead of a whole shop marking up every hour. In the meantime, nobody on your side gets pulled off their real work. Nothing slips. And what goes out the door is something you'd actually put your name on.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="offering">
+  <span class="section-label">How It Works</span>
+  <h2>Hand me the pipeline. I'll run it.</h2>
+
+  <p class="phase-intro" style="color: var(--muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.75;">You have a vision and I can help you execute it. <b>You stop managing prompts and babysitting output, and start getting finished content on a schedule you can count on.</b> Here's the shape of it:</p>
+
+  <div class="phase">
+    <div class="phase-label">Scope</div>
+    <div class="phase-content">
+      <h3>We figure out what's worth making</h3>
+      <p>Not just "more content." We work out what actually moves the needle for you: the topics, the formats, the cadence, and the voice your company uses. And if you don't already know, we can figure it out together.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">Produce</div>
+    <div class="phase-content">
+      <h3>I run the AI and fix its output</h3>
+      <p>I direct the AI to draft what's on the list, then edit every piece up to publishable quality, which you already know is the point where most AI content falls apart. You don't touch a prompt. You don't review slop. You get work that's ready to go.</p>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">Ship</div>
+    <div class="phase-content">
+      <h3>You publish, we tune as we go</h3>
+      <p>Finished pieces land on a regular cadence. We watch what's working and adjust (topics, angles, formats, etc) so the pipeline gets sharper over time instead of more stale. When you need more, we turn it up. When priorities shift, we follow them.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY NOW -->
+<section class="why-now">
+  <span class="section-label">Why Now</span>
+  <h2>The "just publish everything" era is over.</h2>
+  <p>For a while you could point AI at a keyword list, publish in bulk, and rank on sheer volume. <b>That stopped working.</b> Search has gotten much better at spotting content that nobody wrote with a real reader in mind, and bulk, generic output gets you buried now instead of found.</p>
+  <p>So the bar moved. <b>Quality is the strategy now.</b> The companies winning the content game are the ones publishing fewer, better things that people actually read, finish, and link to. That takes a writer. That's me.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- FIRST STEP -->
+<section class="first-step">
+  <span class="section-label">Your First Next Step</span>
+  <h2>Want to see it first? Let me write you one.</h2>
+  <p>Not ready to hand over the whole pipeline? Fair. Pick something you've been meaning to publish — a post, a landing page, a newsletter — and I'll run it through my whole process: direct the draft, edit it to finish, and hand you the piece.</p>
+  <p>If it's good, you'll know exactly what you're buying. If it's not quite there, we can see what the feedback process is like for a round or two, or you can call it. Either way, you'll see how I work before you commit to anything.</p>
+
+  <div class="detail-row">
+    <div class="detail-label">Scope</div>
+    <div class="detail-text">One finished piece, your choice of format. The real thing, start to finish, not a sample reel or a pitch deck.</div>
+  </div>
+
+  <div class="detail-row">
+    <div class="detail-label">Timeline</div>
+    <div class="detail-text">About a week.</div>
+  </div>
+
+  <div class="detail-row">
+    <div class="detail-label">Best for</div>
+    <div class="detail-text">Teams that are curious but cautious, and want to see how it's done before they rethink how their content gets made.</div>
+  </div>
+
+  <p class="aside">Think of it as a first date. You'll learn how I work, I'll learn how your team thinks, and we'll both know whether the bigger thing makes sense.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Let's have coffee.</h2>
+  <p>No pitch. Just a conversation about what you need made and whether I'm the one to make it.</p>
+  <a href="https://calendly.com/the0nlyg00dguy/30min" class="cta-button">Schedule 30 minutes</a>
+</section>
+
+<footer>
+  <span>Legible Systems — Jon Sung</span>
+  <a href="#" id="email-link" onclick="return false;">loading email…</a>
+</footer>
+
+<script>
+(function() {
+  var u = 'the0nlyg00dguy';
+  var d = 'gmail.com';
+  var el = document.getElementById('email-link');
+  var addr = u + '@' + d;
+  el.href = 'mai' + 'lto:' + addr;
+  el.textContent = 'email me';
+  el.onclick = null;
+})();
+</script>
+
+</body>
+</html>
